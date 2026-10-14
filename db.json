@@ -1,0 +1,224 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Auriculares Bluetooth Sonic X",
+      "description": "Auriculares inalámbricos con cancelación de ruido y hasta 30 horas de batería.",
+      "price": 189000,
+      "category": "tecnologia",
+      "brand": "Sonic",
+      "stock": 25,
+      "rating": 4.5,
+      "thumbnail": "https://picsum.photos/seed/tienda1/400/300"
+    },
+    {
+      "id": 2,
+      "title": "Mouse Inalámbrico Ergo",
+      "description": "Mouse ergonómico con receptor USB y sensor de alta precisión.",
+      "price": 95000,
+      "category": "tecnologia",
+      "brand": "Ergo",
+      "stock": 40,
+      "rating": 4.2,
+      "thumbnail": "https://picsum.photos/seed/tienda2/400/300"
+    },
+    {
+      "id": 3,
+      "title": "Teclado Mecánico K87",
+      "description": "Teclado mecánico compacto con switches rojos e iluminación RGB.",
+      "price": 329000,
+      "category": "tecnologia",
+      "brand": "KeyPro",
+      "stock": 0,
+      "rating": 4.7,
+      "thumbnail": "https://picsum.photos/seed/tienda3/400/300"
+    },
+    {
+      "id": 4,
+      "title": "Cargador Rápido 30W",
+      "description": "Cargador USB-C de carga rápida compatible con la mayoría de celulares.",
+      "price": 79000,
+      "category": "tecnologia",
+      "brand": "VoltPlus",
+      "stock": 60,
+      "rating": 4.1,
+      "thumbnail": "https://picsum.photos/seed/tienda4/400/300"
+    },
+    {
+      "id": 5,
+      "title": "Lámpara de Escritorio LED",
+      "description": "Lámpara con tres niveles de brillo y brazo flexible.",
+      "price": 120000,
+      "category": "hogar",
+      "brand": "Lumi",
+      "stock": 18,
+      "rating": 4.3,
+      "thumbnail": "https://picsum.photos/seed/tienda5/400/300"
+    },
+    {
+      "id": 6,
+      "title": "Cafetera Eléctrica 12 Tazas",
+      "description": "Cafetera programable con jarra de vidrio y filtro permanente.",
+      "price": 260000,
+      "category": "hogar",
+      "brand": "BrewHome",
+      "stock": 12,
+      "rating": 4.4,
+      "thumbnail": "https://picsum.photos/seed/tienda6/400/300"
+    },
+    {
+      "id": 7,
+      "title": "Set de Sábanas Queen",
+      "description": "Juego de sábanas de algodón de 200 hilos, incluye funda de almohadas.",
+      "price": 175000,
+      "category": "hogar",
+      "brand": "DormiBien",
+      "stock": 30,
+      "rating": 4.0,
+      "thumbnail": "https://picsum.photos/seed/tienda7/400/300"
+    },
+    {
+      "id": 8,
+      "title": "Termo de Acero Inoxidable 1L",
+      "description": "Mantiene la temperatura hasta 12 horas. Ideal para el tereré o el mate.",
+      "price": 145000,
+      "category": "hogar",
+      "brand": "TermoMax",
+      "stock": 50,
+      "rating": 4.8,
+      "thumbnail": "https://picsum.photos/seed/tienda8/400/300"
+    },
+    {
+      "id": 9,
+      "title": "Pelota de Fútbol N°5",
+      "description": "Pelota cosida a máquina, apta para césped y cancha sintética.",
+      "price": 110000,
+      "category": "deportes",
+      "brand": "Goleador",
+      "stock": 35,
+      "rating": 4.3,
+      "thumbnail": "https://picsum.photos/seed/tienda9/400/300"
+    },
+    {
+      "id": 10,
+      "title": "Mat de Yoga Antideslizante",
+      "description": "Mat de 6 mm con superficie antideslizante y correa de transporte.",
+      "price": 98000,
+      "category": "deportes",
+      "brand": "ZenFit",
+      "stock": 22,
+      "rating": 4.5,
+      "thumbnail": "https://picsum.photos/seed/tienda10/400/300"
+    },
+    {
+      "id": 11,
+      "title": "Mancuernas Ajustables 10kg",
+      "description": "Par de mancuernas con discos intercambiables y cierre de seguridad.",
+      "price": 230000,
+      "category": "deportes",
+      "brand": "IronHome",
+      "stock": 9,
+      "rating": 4.6,
+      "thumbnail": "https://picsum.photos/seed/tienda11/400/300"
+    },
+    {
+      "id": 12,
+      "title": "Botella Deportiva 750ml",
+      "description": "Botella libre de BPA con tapa antiderrame.",
+      "price": 45000,
+      "category": "deportes",
+      "brand": "HydroGo",
+      "stock": 80,
+      "rating": 4.0,
+      "thumbnail": "https://picsum.photos/seed/tienda12/400/300"
+    },
+    {
+      "id": 13,
+      "title": "Remera Algodón Básica",
+      "description": "Remera 100% algodón, corte regular, disponible en varios colores.",
+      "price": 65000,
+      "category": "ropa",
+      "brand": "Basico",
+      "stock": 100,
+      "rating": 4.1,
+      "thumbnail": "https://picsum.photos/seed/tienda13/400/300"
+    },
+    {
+      "id": 14,
+      "title": "Campera Rompevientos",
+      "description": "Campera liviana e impermeable con capucha plegable.",
+      "price": 285000,
+      "category": "ropa",
+      "brand": "Alta Ruta",
+      "stock": 14,
+      "rating": 4.4,
+      "thumbnail": "https://picsum.photos/seed/tienda14/400/300"
+    },
+    {
+      "id": 15,
+      "title": "Zapatillas Urbanas Runner",
+      "description": "Zapatillas livianas con suela de goma y plantilla acolchada.",
+      "price": 340000,
+      "category": "ropa",
+      "brand": "UrbanStep",
+      "stock": 20,
+      "rating": 4.6,
+      "thumbnail": "https://picsum.photos/seed/tienda15/400/300"
+    },
+    {
+      "id": 16,
+      "title": "Gorra Clásica Ajustable",
+      "description": "Gorra de gabardina con cierre ajustable en la parte trasera.",
+      "price": 38000,
+      "category": "ropa",
+      "brand": "Basico",
+      "stock": 70,
+      "rating": 3.9,
+      "thumbnail": "https://picsum.photos/seed/tienda16/400/300"
+    },
+    {
+      "id": 17,
+      "title": "Introducción a JavaScript",
+      "description": "Guía práctica para aprender JavaScript moderno desde cero, con ejercicios.",
+      "price": 150000,
+      "category": "libros",
+      "brand": "Ed. Código",
+      "stock": 15,
+      "rating": 4.7,
+      "thumbnail": "https://picsum.photos/seed/tienda17/400/300"
+    },
+    {
+      "id": 18,
+      "title": "Aprende React Paso a Paso",
+      "description": "Construye aplicaciones reales con componentes, hooks y consumo de APIs.",
+      "price": 165000,
+      "category": "libros",
+      "brand": "Ed. Código",
+      "stock": 11,
+      "rating": 4.8,
+      "thumbnail": "https://picsum.photos/seed/tienda18/400/300"
+    },
+    {
+      "id": 19,
+      "title": "Guía de Git para Equipos",
+      "description": "Flujos de trabajo con ramas, pull requests y resolución de conflictos.",
+      "price": 120000,
+      "category": "libros",
+      "brand": "Ed. Código",
+      "stock": 0,
+      "rating": 4.5,
+      "thumbnail": "https://picsum.photos/seed/tienda19/400/300"
+    },
+    {
+      "id": 20,
+      "title": "Algoritmos Ilustrados",
+      "description": "Estructuras de datos y algoritmos explicados con dibujos y ejemplos sencillos.",
+      "price": 135000,
+      "category": "libros",
+      "brand": "Ed. Código",
+      "stock": 27,
+      "rating": 4.6,
+      "thumbnail": "https://picsum.photos/seed/tienda20/400/300"
+    }
+  ]
+}
