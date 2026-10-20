@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react' // Trae useState y useEffect de React
 import './App.css'
+import ProductList from './components/ProductList'
 
 function App() { // es una funcion y React la vuelve a ejecutar cada vez que algo cambia
     // useState devuelve dos cosas: el valor actual y la función para cambiarlo. [] es el valor inicial. Hace que React guarde el valor afuera de la función y te lo devuelva en cada ejecución.
@@ -28,15 +29,12 @@ function App() { // es una funcion y React la vuelve a ejecutar cada vez que alg
     }, [])
 
     return ( // parentesis para varias lineas
-        <> {/* fragmento, ya que un componente solo puede devolver un elemento raiz, esto agrupa el h1 con la lista */}
+        <div className="app"> {/* fragmento, ya que un componente solo puede devolver un elemento raiz, esto agrupa el h1 con la lista */}
             <h1>Mini Tienda</h1>
             {loading && <p className="message">Cargando...</p>} {/* evalua de izquierda a derecha y se corta cuando es falso */}
             {error && <p className="message error">{error}</p>} {/* el error es null (falso) mientras no haya fallo, cuando se guarda el texto con setError, pasa a ser un texto no vacío, que cuenta como verdadero, y aparece el <p> */}
-            <ul>
-                {/* recorre el arreglo y devuelve otro, para cada producto p crea un <li> */}
-                {products.map(p => <li key={p.id}>{p.title}</li>)} {/* key: identificador unico por elemento, para que React sepa cual es cual al repintar. p.title: titulo del producto, tal como en la bd */}
-            </ul>
-        </>
+            <ProductList products={products} /> {/* se escribe como una etiqueta HTML porque es un componente: su nombre empieza con mayúscula. */}
+        </div>
     )
 }
 
