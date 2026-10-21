@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react' // Trae useState y useEffect de React
 import './App.css'
 import ProductList from './components/ProductList'
+import Header from './components/Header'
 
 function App() { // es una funcion y React la vuelve a ejecutar cada vez que algo cambia
     // useState devuelve dos cosas: el valor actual y la función para cambiarlo. [] es el valor inicial. Hace que React guarde el valor afuera de la función y te lo devuelva en cada ejecución.
     const [products, setProducts] = useState([]) // useState([]): es la llamada al hook. Le dice a React: “guardame un dato y su valor inicial es []”. Devuelve un arreglo de dos cosas: el valor actual y la función para cambiarlo 
     const [loading, setLoading] = useState(true) // true: al arrancar, todavía se está cargando.
     const [error, setError] = useState(null) // null: todavía no hubo ningún error.
+    const [cart, setCart] = useState([]) // cart: productos agregados (vacío al empezar); setCart: la función para cambiarlo y que React redibuje
 
     // App pide los 20 productos a la API y los guarda en products
     useEffect(() => { // funcion con lo que hay que hacer, mas una lista de dependencias. Ejecutá esto después de pintar, y solo cuando cambie algo de esta lista
@@ -30,7 +32,7 @@ function App() { // es una funcion y React la vuelve a ejecutar cada vez que alg
 
     return ( // parentesis para varias lineas
         <div className="app"> {/* el contenedor principal, un solo elemento raíz, la clase app limita el ancho, lo centra y le da relleno */}
-            <h1>Mini Tienda</h1>
+            <Header count={cart.length} /> {/* le pasa al Header la cantidad de elementos del arreglo cart. Con [] es 0 */}
             {loading && <p className="message">Cargando...</p>} {/* evalua de izquierda a derecha y se corta cuando es falso */}
             {error && <p className="message error">{error}</p>} {/* el error es null (falso) mientras no haya fallo, cuando se guarda el texto con setError, pasa a ser un texto no vacío, que cuenta como verdadero, y aparece el <p> */}
             <ProductList products={products} /> {/* se escribe como una etiqueta HTML porque es un componente: su nombre empieza con mayúscula. */}
