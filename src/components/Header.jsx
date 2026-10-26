@@ -5,4 +5,4 @@ function Header({ count }) { // Header: componente (mayus), count: prop, dato qu
     </header>)
 }
 
-export default Header // Para que se pueda importar el compotente Header
+export default Header // Para que se pueda importar el componente Header
