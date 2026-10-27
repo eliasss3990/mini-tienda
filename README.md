@@ -1,16 +1,56 @@
-# React + Vite
+# Mini Tienda - (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación de comercio electrónico, desarrollada en equipo durante pasantia 2026. Este implementa consumo de API REST local, catálogo de productos con precios localizados en Guaraníes, buscador en tiempo real y gestión de carrito de compras.
 
-Currently, two official plugins are available:
+## Requisitos previos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Node.js** (20 o superior)
+- **npm**
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Para poner en marcha
 
-## Expanding the ESLint configuration
+Para ejecutar el proyecto en local se necesitan en simultáneo 2 terminales:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. iniciar la API backend
+
+En la primera terminal, levantá la base de datos simulada en el puerto `3001`:
+
+```bash
+npx json-server@0.17.4 db.json --port 3001
+```
+
+La API queda corriendo en http://localhost:3001/products.
+
+### 2. Iniciar el Frontend
+
+En la segunda terminal, instalá dependencias e iniciá el servidor:
+
+```bash
+npm install
+npm run dev
+```
+La terminal muestra cierta dirección, usualmente `http://localhost:5173/`. Copiala y pegala en tu navegador, si no hay errores de conexión con la api deberia de mostrar los productos
+
+## Scripts 
+
+`npm run dev`: inicia el servidor en desarrollo local.
+`npm run build`: compila la aplicación para producción en la carpeta `dist/`.
+`npm run lint`: ejecuta ESLint para verificar la calidad y sintaxis del código.
+
+## Capturas de pantalla
+
+### Catálogo de productos
+![catalogo](./screenshots/image.png)
+
+### Búsqueda en tiempo real
+![busqueda](./screenshots/image2.png)
+
+### Búsqueda sin resultados
+![Sin resultados](./screenshots/image3.png)
+
+### Carrito de compras
+![carrito](./screenshots/image4.png)
+
+
+
