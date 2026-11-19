@@ -39,7 +39,16 @@ function App() { // es una funcion y React la vuelve a ejecutar cada vez que alg
 
     function addToCart(product) { // recibe el producto completo que se quiere agregar. La función vive en App porque es la dueña de cart
         if (cart.some((item) => item.id === product.id)) return // some devuelve true si algún elemento de cart cumple la condición. Si el producto ya está, sale sin agregarlo de nuevo
-        setCart([...cart, product]) // ...cart desparrama los elementos que ya había y product va al final. El resultado es un arreglo nuevo, no el mismo modificado
+        setCart([...cart, { ...product, quantity: 1 }]) // ...cart desparrama los elementos que ya había; al final va una copia del producto (...product) con quantity: 1, la cantidad con la que entra al carrito. El resultado es un arreglo nuevo, no el mismo modificado
+    }
+
+    function changeQuantity(id, change) { // recibe el id del producto y cuánto sumar a su cantidad: 1 para subir, -1 para bajar
+        setCart(cart.map((item) => { // map arma un carrito nuevo recorriendo cada producto
+            if (item.id !== id) return item // los demás productos quedan igual
+            const quantity = item.quantity + change // la cantidad nueva
+            if (quantity < 1 || quantity > item.stock) return item // no baja de 1 (para quitarlo está la x) ni sube más del stock que hay
+            return { ...item, quantity } // copia del producto con la cantidad nueva
+        }))
     }
 
     function removeFromCart(id) { // recibe el id del producto que se quiere quitar
@@ -70,7 +79,7 @@ function App() { // es una funcion y React la vuelve a ejecutar cada vez que alg
                     {!loading && !error && filterProducts.length === 0 && <p className="message">No se encontraron productos</p> }  {/* Si NO está cargando y NO hay error, pero no hay coincidencias */}
                     {!loading && !error && filterProducts.length > 0 && <ProductList products={sortedProducts} cart={cart} onAdd={addToCart} />} {/* cart: para que cada tarjeta sepa si su producto ya está; onAdd: le pasa la función de agregar */}
                 </section>
-                <Cart cart={cart} onRemove={removeFromCart} onClear={clearCart} /> {/* le pasa el carrito para mostrarlo y las funciones para quitar uno o vaciar todo */}
+                <Cart cart={cart} onRemove={removeFromCart} onClear={clearCart} onChangeQuantity={changeQuantity} /> {/* le pasa el carrito para mostrarlo y las funciones para quitar uno, vaciar todo o cambiar la cantidad */}
             </main>
         </div>
     )
