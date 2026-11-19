@@ -15,6 +15,8 @@ function App() { // es una funcion y React la vuelve a ejecutar cada vez que alg
     const [category, setCategory] = useState('') // category: la categoría elegida en el filtro; '' significa "todas"
     const categories = [...new Set(products.map((product) => product.category))] // map saca la categoría de cada producto y Set quita las repetidas, así el filtro arma sus opciones solo
     const filterProducts = products.filter((product) => product.title.toLowerCase().includes(search.trim().toLocaleLowerCase()) && (category === '' || product.category === category)) // se queda con los que coinciden con el buscador y, si hay una categoría elegida, también con ella
+    const [order, setOrder] = useState('') // order: cómo ordenar por precio; '' = como vienen de la API, 'asc' = de menor a mayor, 'desc' = de mayor a menor
+    const sortedProducts = [...filterProducts].sort((a, b) => order === 'asc' ? a.price - b.price : order === 'desc' ? b.price - a.price : 0) // [...] hace una copia para no cambiar la lista original (sort modifica el arreglo); restar precios ordena de menor a mayor, y al revés de mayor a menor; 0 deja el orden como está
     // App pide los 20 productos a la API y los guarda en products
     useEffect(() => { // funcion con lo que hay que hacer, mas una lista de dependencias. Ejecutá esto después de pintar, y solo cuando cambie algo de esta lista
         async function cargarProductos() { // define una funcion asincrona que puede esperar resultados lentos. Se declara adentro porque la función que le pasás a useEffect no puede ser async directamente.
@@ -58,10 +60,15 @@ function App() { // es una funcion y React la vuelve a ejecutar cada vez que alg
                         <option value="">Todas las categorías</option>
                         {categories.map((cat) => <option key={cat} value={cat}>{cat}</option>)} {/* una opción por cada categoría que viene de la API */}
                     </select>
+                    <select className="search" value={order} onChange={(e) => setOrder(e.target.value)}> {/* desplegable para ordenar por precio; mismo estilo que el buscador. Al elegir, guarda el valor en order */}
+                        <option value="">Ordenar por precio</option>
+                        <option value="asc">Menor a mayor</option>
+                        <option value="desc">Mayor a menor</option>
+                    </select>
                     {loading && <p className="message">Cargando...</p>} {/* evalua de izquierda a derecha y se corta cuando es falso */}
                     {error && <p className="message error">{error}</p>} {/* el error es null (falso) mientras no haya fallo, cuando se guarda el texto con setError, pasa a ser un texto no vacío, que cuenta como verdadero, y aparece el <p> */}
                     {!loading && !error && filterProducts.length === 0 && <p className="message">No se encontraron productos</p> }  {/* Si NO está cargando y NO hay error, pero no hay coincidencias */}
-                    {!loading && !error && filterProducts.length > 0 && <ProductList products={filterProducts} cart={cart} onAdd={addToCart} />} {/* cart: para que cada tarjeta sepa si su producto ya está; onAdd: le pasa la función de agregar */}
+                    {!loading && !error && filterProducts.length > 0 && <ProductList products={sortedProducts} cart={cart} onAdd={addToCart} />} {/* cart: para que cada tarjeta sepa si su producto ya está; onAdd: le pasa la función de agregar */}
                 </section>
                 <Cart cart={cart} onRemove={removeFromCart} onClear={clearCart} /> {/* le pasa el carrito para mostrarlo y las funciones para quitar uno o vaciar todo */}
             </main>
