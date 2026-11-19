@@ -1,4 +1,6 @@
 function ProductCard({ product, inCart, onAdd }) { // inCart: true si el producto ya está en el carrito; onAdd: la función de App para agregarlo
+    const soldOut = product.stock === 0 // true si ya no queda stock de este producto
+
     return (
         <div className="card">
             <img src={product.thumbnail} alt={product.title} />
@@ -8,9 +10,9 @@ function ProductCard({ product, inCart, onAdd }) { // inCart: true si el product
             <button
                 className={inCart ? "btn btn-added" : "btn"} // si ya está en el carrito, cambia el estilo del botón
                 onClick={() => onAdd(product)} // al hacer clic, avisa a App con el producto completo
-                disabled={inCart} // si ya está en el carrito, el botón no se puede apretar
+                disabled={inCart || soldOut} // si ya está en el carrito o está agotado, el botón no se puede apretar (el estilo gris ya lo da .btn:disabled)
             >
-                {inCart ? "En el carrito" : "Agregar"}
+                {soldOut ? "Agotado" : inCart ? "En el carrito" : "Agregar"} {/* si no hay stock dice Agotado; si no, el texto de siempre */}
             </button>
         </div>
     )
