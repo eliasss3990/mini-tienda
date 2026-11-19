@@ -42,6 +42,10 @@ function App() { // es una funcion y React la vuelve a ejecutar cada vez que alg
         setCart(cart.filter((item) => item.id !== id)) // filter se queda con todos los productos menos el que tiene ese id, y eso es el carrito nuevo
     }
 
+    function clearCart() { // vacía el carrito completo
+        setCart([]) // el carrito nuevo es un arreglo vacío, y React redibuja todo
+    }
+
     return ( // parentesis para varias lineas
         <div className="app"> {/* el contenedor principal, un solo elemento raíz, la clase app limita el ancho, lo centra y le da relleno */}
             <Header count={cart.length} /> {/* le pasa al Header la cantidad de elementos del arreglo cart. Con [] es 0 */}
@@ -53,7 +57,7 @@ function App() { // es una funcion y React la vuelve a ejecutar cada vez que alg
                     {!loading && !error && filterProducts.length === 0 && <p className="message">No se encontraron productos</p> }  {/* Si NO está cargando y NO hay error, pero no hay coincidencias */}
                     {!loading && !error && filterProducts.length > 0 && <ProductList products={filterProducts} cart={cart} onAdd={addToCart} />} {/* cart: para que cada tarjeta sepa si su producto ya está; onAdd: le pasa la función de agregar */}
                 </section>
-                <Cart cart={cart} onRemove={removeFromCart} /> {/* le pasa el carrito para mostrarlo y la función para quitar */}
+                <Cart cart={cart} onRemove={removeFromCart} onClear={clearCart} /> {/* le pasa el carrito para mostrarlo y las funciones para quitar uno o vaciar todo */}
             </main>
         </div>
     )

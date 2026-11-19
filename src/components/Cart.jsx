@@ -1,4 +1,4 @@
-function Cart({ cart, onRemove }) { // cart: la lista de productos agregados; onRemove: la función de App para quitar uno
+function Cart({ cart, onRemove, onClear }) { // cart: la lista de productos agregados; onRemove: la función de App para quitar uno; onClear: la de App para vaciar todo
     const total = cart.reduce((suma, item) => suma + item.price, 0) // reduce recorre el carrito y va sumando los precios, empezando desde 0
 
     return (
@@ -15,6 +15,7 @@ function Cart({ cart, onRemove }) { // cart: la lista de productos agregados; on
                 ))}
             </ul>
             <p className="cart-total">TOTAL: Gs. {total.toLocaleString("es-PY")}</p>
+            {cart.length > 0 && <button className="btn" onClick={onClear}>Vaciar carrito</button>} {/* solo aparece si hay algo en el carrito; al hacer clic avisa a App para vaciarlo */}
         </section>
     )
 }
