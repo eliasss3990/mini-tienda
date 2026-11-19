@@ -10,7 +10,17 @@ function App() { // es una funcion y React la vuelve a ejecutar cada vez que alg
     const [products, setProducts] = useState([]) // useState([]): es la llamada al hook. Le dice a React: “guardame un dato y su valor inicial es []”. Devuelve un arreglo de dos cosas: el valor actual y la función para cambiarlo 
     const [loading, setLoading] = useState(true) // true: al arrancar, todavía se está cargando.
     const [error, setError] = useState(null) // null: todavía no hubo ningún error.
-    const [cart, setCart] = useState([]) // cart: productos agregados (vacío al empezar); setCart: la función para cambiarlo y que React redibuje
+    const [cart, setCart] = useState(() => { // cart: productos agregados; setCart: la función para cambiarlo y que React redibuje. Al darle una función, React la ejecuta solo la primera vez para sacar el valor inicial
+        try { // intenta leer el carrito guardado en el navegador
+            const saved = localStorage.getItem('cart') // getItem devuelve el texto guardado con la clave 'cart', o null si nunca se guardó nada
+            return saved ? JSON.parse(saved) : [] // JSON.parse convierte ese texto de nuevo en un arreglo; si no había nada, arranca vacío
+        } catch { // si el texto guardado estaba dañado, no rompe la página
+            return [] // y arranca con el carrito vacío
+        }
+    })
+    useEffect(() => { // se ejecuta cada vez que cart cambia (por la lista de abajo)
+        localStorage.setItem('cart', JSON.stringify(cart)) // setItem guarda en el navegador; JSON.stringify convierte el arreglo en texto porque localStorage solo guarda texto
+    }, [cart])
     const [search, setSearch] = useState('')// Sirve para crear una variable estado que almacena un texto. useState("") es el hook que inicializa el estado con un string vacio
     const [category, setCategory] = useState('') // category: la categoría elegida en el filtro; '' significa "todas"
     const categories = [...new Set(products.map((product) => product.category))] // map saca la categoría de cada producto y Set quita las repetidas, así el filtro arma sus opciones solo
