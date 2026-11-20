@@ -9,11 +9,11 @@ function Cart({ cart, onRemove, onClear, onChangeQuantity }) { // cart: la lista
                 {cart.map((item) => ( // una fila por cada producto del carrito
                     <li className="cart-item" key={item.id}>
                         <span>{item.title}</span>
-                        <button className="btn-remove" onClick={() => onChangeQuantity(item.id, -1)}>-</button> {/* baja la cantidad en 1; App no la deja bajar de 1 */}
+                        <button className="btn-remove" aria-label={`Bajar la cantidad de ${item.title}`} onClick={() => onChangeQuantity(item.id, -1)}>-</button> {/* baja la cantidad en 1; App no la deja bajar de 1 */}
                         <span>{item.quantity}</span> {/* cuántas unidades hay de este producto */}
-                        <button className="btn-remove" onClick={() => onChangeQuantity(item.id, 1)}>+</button> {/* sube la cantidad en 1; App no la deja pasar del stock */}
+                        <button className="btn-remove" aria-label={`Subir la cantidad de ${item.title}`} onClick={() => onChangeQuantity(item.id, 1)}>+</button> {/* sube la cantidad en 1; App no la deja pasar del stock */}
                         <span>Gs. {(item.price * item.quantity).toLocaleString("es-PY")}</span> {/* precio de esa fila: precio por cantidad */}
-                        <button className="btn-remove" onClick={() => onRemove(item.id)}>x</button> {/* al hacer clic, avisa a App qué id quitar */}
+                        <button className="btn-remove" aria-label={`Quitar ${item.title} del carrito`} onClick={() => onRemove(item.id)}>x</button> {/* al hacer clic, avisa a App qué id quitar */}
                     </li>
                 ))}
             </ul>

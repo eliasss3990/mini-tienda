@@ -89,11 +89,11 @@ function App() { // es una funcion y React la vuelve a ejecutar cada vez que alg
             <main className="layout"> {/* la clase layout pone el catálogo y el carrito lado a lado */}
                 <section> {/* el catálogo: buscador, mensajes y lista */}
                     <SearchBar search={search} onSearchChange={setSearch}/>
-                    <select className="search" value={category} onChange={(e) => setCategory(e.target.value)}> {/* desplegable de categorías; usa el mismo estilo que el buscador. Al elegir una, guarda su valor en category */}
+                    <select className="search" aria-label="Filtrar por categoría" value={category} onChange={(e) => setCategory(e.target.value)}> {/* desplegable de categorías; usa el mismo estilo que el buscador. Al elegir una, guarda su valor en category */}
                         <option value="">Todas las categorías</option>
                         {categories.map((cat) => <option key={cat} value={cat}>{cat}</option>)} {/* una opción por cada categoría que viene de la API */}
                     </select>
-                    <select className="search" value={order} onChange={(e) => setOrder(e.target.value)}> {/* desplegable para ordenar por precio; mismo estilo que el buscador. Al elegir, guarda el valor en order */}
+                    <select className="search" aria-label="Ordenar por precio" value={order} onChange={(e) => setOrder(e.target.value)}> {/* desplegable para ordenar por precio; mismo estilo que el buscador. Al elegir, guarda el valor en order */}
                         <option value="">Ordenar por precio</option>
                         <option value="asc">Menor a mayor</option>
                         <option value="desc">Mayor a menor</option>
