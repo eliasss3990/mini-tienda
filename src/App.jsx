@@ -43,6 +43,13 @@ function App() { // es una funcion y React la vuelve a ejecutar cada vez que alg
                 if (!res.ok) throw new Error('No se pudieron cargar los productos') // si la API tira error corta la función y lanza el error 
                 const data = await res.json() // si no tira error, lee el cuerpo de la respuesta y lo convierte en datos de JavaScript
                 setProducts(data) // guarda la lista en el estado. Es la unica forma correcta de cambiarlo, y avisa a React de que algo se cambio
+                setCart((saved) => saved // el carrito guardado puede tener datos viejos, así que se actualiza con lo que dice la API
+                    .filter((item) => data.some((product) => product.id === item.id)) // saca los que ya no existen en la API
+                    .map((item) => {
+                        const product = data.find((product) => product.id === item.id) // el producto actual de la API
+                        return { ...product, quantity: Math.min(item.quantity, product.stock) } // precio y stock nuevos; la cantidad no puede pasar del stock
+                    })
+                    .filter((item) => item.quantity >= 1)) // saca los que quedaron sin stock
             }
             catch { // si algo adentro del try falla, salta acá en lugar de romper
                 setError('No se pudieron cargar los productos') // guarda el texto en el estado error
