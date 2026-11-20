@@ -15,7 +15,8 @@ function App() { // es una funcion y React la vuelve a ejecutar cada vez que alg
     const [cart, setCart] = useState(() => { // cart: productos agregados; setCart: la función para cambiarlo y que React redibuje. Al darle una función, React la ejecuta solo la primera vez para sacar el valor inicial
         try { // intenta leer el carrito guardado en el navegador
             const saved = JSON.parse(localStorage.getItem(CART_KEY)) // lee el texto guardado y lo vuelve a convertir en datos
-            return Array.isArray(saved) ? saved : [] // solo sirve si es un arreglo, si no arranca vacío
+            if (!Array.isArray(saved)) return [] // solo sirve si es un arreglo, si no arranca vacío
+            return saved.filter((item) => item && typeof item.id === 'number' && typeof item.price === 'number' && Number.isInteger(item.quantity) && item.quantity >= 1) // se queda solo con los productos que tienen id, precio y una cantidad válida, así uno dañado no rompe el total
         } catch { // si lo guardado está dañado o el navegador no deja leer, no rompe la página
             return [] // y arranca con el carrito vacío
         }
