@@ -7,3 +7,4 @@
   cursor: pointer;
 }
 .btn-qty:disabled { opacity: 0.5; cursor: not-allowed; }
+.card-rating { margin: 0 12px 4px; }
