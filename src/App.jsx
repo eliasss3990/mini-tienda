@@ -5,6 +5,8 @@ import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 import Cart from './components/Cart'
 
+const CART_KEY = 'mini-tienda-cart' // clave propia para guardar el carrito, así otro proyecto de localhost no la pisa
+
 function App() { // es una funcion y React la vuelve a ejecutar cada vez que algo cambia
     // useState devuelve dos cosas: el valor actual y la función para cambiarlo. [] es el valor inicial. Hace que React guarde el valor afuera de la función y te lo devuelva en cada ejecución.
     const [products, setProducts] = useState([]) // useState([]): es la llamada al hook. Le dice a React: “guardame un dato y su valor inicial es []”. Devuelve un arreglo de dos cosas: el valor actual y la función para cambiarlo 
@@ -12,14 +14,18 @@ function App() { // es una funcion y React la vuelve a ejecutar cada vez que alg
     const [error, setError] = useState(null) // null: todavía no hubo ningún error.
     const [cart, setCart] = useState(() => { // cart: productos agregados; setCart: la función para cambiarlo y que React redibuje. Al darle una función, React la ejecuta solo la primera vez para sacar el valor inicial
         try { // intenta leer el carrito guardado en el navegador
-            const saved = localStorage.getItem('cart') // getItem devuelve el texto guardado con la clave 'cart', o null si nunca se guardó nada
-            return saved ? JSON.parse(saved) : [] // JSON.parse convierte ese texto de nuevo en un arreglo; si no había nada, arranca vacío
-        } catch { // si el texto guardado estaba dañado, no rompe la página
+            const saved = JSON.parse(localStorage.getItem(CART_KEY)) // lee el texto guardado y lo vuelve a convertir en datos
+            return Array.isArray(saved) ? saved : [] // solo sirve si es un arreglo, si no arranca vacío
+        } catch { // si lo guardado está dañado o el navegador no deja leer, no rompe la página
             return [] // y arranca con el carrito vacío
         }
     })
     useEffect(() => { // se ejecuta cada vez que cart cambia (por la lista de abajo)
-        localStorage.setItem('cart', JSON.stringify(cart)) // setItem guarda en el navegador; JSON.stringify convierte el arreglo en texto porque localStorage solo guarda texto
+        try { // intenta guardar el carrito en el navegador
+            localStorage.setItem(CART_KEY, JSON.stringify(cart)) // lo pasa a texto porque localStorage solo guarda texto
+        } catch {
+            // si el navegador no deja guardar (lleno o bloqueado), la página sigue andando, solo no se recuerda al recargar
+        }
     }, [cart])
     const [search, setSearch] = useState('')// Sirve para crear una variable estado que almacena un texto. useState("") es el hook que inicializa el estado con un string vacio
     const [category, setCategory] = useState('') // category: la categoría elegida en el filtro; '' significa "todas"
